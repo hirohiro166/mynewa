@@ -1,0 +1,5 @@
+tap "homebrew/bundle"
+tap "homebrew/services"
+brew "composer"
+brew "mas"
+brew "openssl@3"
