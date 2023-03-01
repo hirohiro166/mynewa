@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\SelfProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(NewsController::class)->prefix('admin')->name('news.')->group(function(){
+    Route::get('news/create', 'add')->name('add');
+});
+
+Route::controller(SelfProfileController::class)->prefix('admin')->name('news,')->group(function(){
+    Route::get('profile/create', 'add')->name('addpro');
+    Route::get('profile/edit', 'edit')->name('editpro');
 });
