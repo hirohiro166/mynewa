@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\SelfProfileController;
+use App\Http\Controllers\Admin\SelfProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +23,7 @@ Route::controller(NewsController::class)->prefix('admin')->name('news.')->group(
     Route::get('news/create', 'add')->name('add');
 });
 
-Route::controller(SelfProfileController::class)->prefix('admin')->name('news,')->group(function(){
+Route::controller(SelfProfileController::class)->prefix('admin')->name('profile.')->group(function(){
     Route::get('profile/create', 'add')->name('addpro');
     Route::get('profile/edit', 'edit')->name('editpro');
 });
