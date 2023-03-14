@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     {{-- Laravel標準で用意されているJavascript、CSSを読み込みます --}}
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/sass/admin.scss'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/sass/profile.scss'])
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
