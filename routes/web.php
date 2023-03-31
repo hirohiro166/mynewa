@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(NewsController::class)->prefix('admin')->middleware('auth')->name('news.')->group(function(){
     Route::get('news/create', 'add')->name('add');
+    Route::get('profile/create', 'add')->name('add');
+    Route::get('profile/edit', 'add')->name('add');
 });
 
 require __DIR__.'/auth.php';
