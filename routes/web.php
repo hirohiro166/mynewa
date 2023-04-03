@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,12 @@ Route::controller(NewsController::class)->prefix('admin')->middleware('auth')->n
     Route::get('news/create', 'add')->name('add');
     Route::get('profile/create', 'add')->name('add');
     Route::get('profile/edit', 'add')->name('add');
+    Route::post('news/create', 'create')->name('create');
+});
+
+Route::controller(ProfileController::class)->prefix('admin')->middleware('auth')->name('profile.')->group(function(){
+    Route::post('profile/create', 'create')->name('create');
+    Route::post('profile/edit', 'create')->name('create');
 });
 
 require __DIR__.'/auth.php';
