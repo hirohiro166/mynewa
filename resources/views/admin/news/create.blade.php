@@ -29,7 +29,7 @@
                             <input type="file" class="form-control-file" name="image">
                         </div>
                     </div>
-                    {{ count($errors) }}
+                    {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="登録">
                 </form>
             </div>

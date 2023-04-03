@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\SelfProfileController;
 use App\Http\Controllers\Admin\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,14 +32,14 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(NewsController::class)->prefix('admin')->middleware('auth')->name('news.')->group(function(){
     Route::get('news/create', 'add')->name('add');
-    Route::get('profile/create', 'add')->name('add');
-    Route::get('profile/edit', 'add')->name('add');
     Route::post('news/create', 'create')->name('create');
 });
 
-Route::controller(ProfileController::class)->prefix('admin')->middleware('auth')->name('profile.')->group(function(){
+Route::controller(SelfProfileController::class)->prefix('admin')->middleware('auth')->name('profile.')->group(function(){
+    Route::get('profile/create', 'add')->name('add');
     Route::post('profile/create', 'create')->name('create');
-    Route::post('profile/edit', 'create')->name('create');
+    Route::get('profile/edit', 'edit')->name('edit');
+    Route::post('profile/edit', 'update')->name('update');
 });
 
 require __DIR__.'/auth.php';
