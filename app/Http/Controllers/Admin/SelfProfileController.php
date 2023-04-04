@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileRequest;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class SelfProfileController extends Controller
@@ -13,8 +15,17 @@ class SelfProfileController extends Controller
         return view('admin.profile.create');
     }
 
-    public function create()
+    public function create(ProfileRequest $request)
     {
+        $news = new Profile();
+        $form = $request->all();
+
+        unset($form['_token']);
+        unset($form['image']);
+
+        $news->fill($form);
+        $news->save();
+
         return redirect('admin/profile/create');
     }
 

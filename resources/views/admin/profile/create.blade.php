@@ -11,16 +11,23 @@
             <div class="col-md-8 mx-auto">
                 <h2>Myプロフィール作成画面</h2>
                 <form action="{{ route('profile.create') }}" method="post" enctype="multipart/form-data">
+                    @if (count($errors) > 0)
+                        <ul>
+                            @foreach($errors->all() as $e)
+                                <li>{{ $e }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                     <div class="form-group row md-2">
                         <label class="col-md-2" for="title">氏名</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         </div>
                     </div> 
                     <div class="form-group row mb-2">
                         <label class="col-md-2" for="gender">性別</label>
                         <div class="col-md-3">
-                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="gender" value="">
                             <label><input type="radio" name="gender" value="0">男性</label>
                             <label><input type="radio" name="gender" value="1">女性</label>
                             <label><input type="radio" name="gender" value="1">その他</label>
@@ -29,13 +36,13 @@
                     <div class="form-group row mb-2">
                         <label class="col-md-2" for="title">趣味</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" name="body" rows="7">{{ old('body') }}</textarea>
+                                <textarea class="form-control" name="hobby" rows="7">{{ old('body') }}</textarea>
                             </div>
                     </div>
                     <div class="form-group row mb-2">
                         <label class="col-md-2" for="title">自己紹介欄</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" name="body" rows="7">{{ old('body') }}</textarea>
+                                <textarea class="form-control" name="introduction" rows="7">{{ old('body') }}</textarea>
                             </div>
                     </div>
                     {{ csrf_field() }}
