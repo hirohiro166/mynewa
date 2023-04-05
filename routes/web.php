@@ -24,15 +24,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 Route::controller(NewsController::class)->prefix('admin')->middleware('auth')->name('news.')->group(function(){
     Route::get('news/create', 'add')->name('add');
     Route::post('news/create', 'create')->name('create');
+    Route::get('news', 'index')->name('index');
 });
 
 Route::controller(SelfProfileController::class)->prefix('admin')->middleware('auth')->name('profile.')->group(function(){
@@ -40,6 +35,7 @@ Route::controller(SelfProfileController::class)->prefix('admin')->middleware('au
     Route::post('profile/create', 'create')->name('create');
     Route::get('profile/edit', 'edit')->name('edit');
     Route::post('profile/edit', 'update')->name('update');
+    Route::get('profile', 'index')->name('index');
 });
 
 require __DIR__.'/auth.php';

@@ -19,6 +19,8 @@ class NewsController extends Controller
     //4-15
     public function create(NewsRequest $request)
     {
+        //Varidate
+        //$this->varidate($request, News::$rules);
         //Newsのインスタンス化
         $news = new News();
         //フォームに入力された内容を格納
@@ -42,6 +44,19 @@ class NewsController extends Controller
         $news->save();
         //admin/news/createにリダイレクト
         return redirect('admin/news/create');
+    }
+
+    public function index(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        if ($cond_title !=''){
+            //検索されたら結果を取得
+            $posts = News::where('title',$cond_title)->get();
+        } else {
+            //それ以外は全てのニュースを取得
+            $posts = News::all();
+        }
+        return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
 
     public function edit()
