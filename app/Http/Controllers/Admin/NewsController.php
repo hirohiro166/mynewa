@@ -43,7 +43,7 @@ class NewsController extends Controller
         $news->fill($form);
         $news->save();
         //admin/news/createにリダイレクト
-        return redirect('admin/news/create');
+        return redirect('admin/news');
     }
 
     public function index(Request $request)
@@ -59,14 +59,48 @@ class NewsController extends Controller
         return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
 
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('admin.news.edit');
+        //Newsmodelから取得
+        $news = News::find($request->id);
+        if(empty($news)){
+            abort(404);
+        }
+        return view('admin.news.edit', ['news_form' =>$news]);
     }
 
-    public function update()
+    public function update(NewsRequest $request)
     {
-        return redirect('admin/news/edit');
+        //NewsModelから取得
+        $news = News::find($request->id);
+        //送信されてきたフォームデータを格納
+        $news_form = $request->all();
+        if (isset($news_form['image'])){
+            $path = $request->file('image')->store('public/image');
+            $news->image_path = basename($path);
+            unset($news_form['image']);
+
+            //画像削除のチェックボックスにチェックがついたら処理
+        } elseif (0 == strcmp($request->remove, 'true')) {
+            $news->image_path = null;
+        }
+        unset($news_form['_token']);
+        unset($news_form['remove']);
+
+        //該当するデータを上書きして保存
+        $news->fill($news_form)->save();
+
+        return redirect('admin/news');
+    }
+
+    public function delete(Request $request)
+    {
+        //該当するNewsModelを取得
+        $news = News::find($request->id);
+        //削除
+        $news->delete();
+
+        return redirect('admin/news');
     }
 
 }

@@ -36,6 +36,7 @@
                                 <th width="10%">性別</th>
                                 <th width="20%">趣味</th>
                                 <th width="30%">自己紹介</th>
+                                <th width="30%">編集/削除</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,8 +45,16 @@
                                     <th>{{ $profile->id }}</th>
                                     <td>{{ Str::limit($profile->name, 100) }}</td>
                                     <td>{{ Str::limit($profile->gender, 100) }}</td>
-                                    <td>{{ Str::limit($profile->hobby, 250) }}</td>
-                                    <td>{{ Str::limit($profile->introduction, 250) }}</td>
+                                    <td>{{ Str::limit($profile->hobby, 200) }}</td>
+                                    <td>{{ Str::limit($profile->introduction, 200) }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ route('profile.edit', ['id' => $profile->id]) }}">編集</a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('profile.delete', ['id' => $profile->id]) }}">削除</a>
+                                        </div>
+                                    </td>
                                 </tr>
 
                             @endforeach
