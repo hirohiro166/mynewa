@@ -25,17 +25,17 @@
                     <div class="col-md-10">
                         <p>
                             <div class="form-check form-check-inline">
-                                <input type="radio" name="gender" id="男性" value="男性" {{ $profile_form->gender == '男性' ? 'checked' : '' }}>男性
+                                <input type="radio" name="gender" id="男性" value="男性" {{ old('gender', $profile_form->gender) == '男性' ? 'checked' : '' }}>男性
                             </div>
                         </p>
                         <p>
                             <div class="form-check form-check-inline">
-                                <input type="radio" name="gender" id="女性" value="女性" {{ $profile_form->gender == '女性' ? 'checked' : '' }}>女性
+                                <input type="radio" name="gender" id="女性" value="女性" {{ old('gender', $profile_form->gender) == '女性' ? 'checked' : '' }}>女性
                             </div>
                         </p>
                         <p>
                             <div class="form-check form-check-inline">
-                                <input type="radio" name="gender" id="その他" value="その他" {{ $profile_form->gender == 'その他' ? 'checked' : '' }}>その他
+                                <input type="radio" name="gender" id="その他" value="その他" {{ old('gender', $profile_form->gender) == 'その他' ? 'checked' : '' }}>その他
                             </div>
                         </p>
                     </div>

@@ -26,11 +26,17 @@
                     </div> 
                     <div class="form-group row mb-2">
                         <label class="col-md-2" for="gender">性別</label>
-                        <div class="col-md-3">
-                        <input type="hidden" name="gender" value="">
-                            <label><input type="radio" name="gender" value="男性">男性</label>
-                            <label><input type="radio" name="gender" value="女性">女性</label>
-                            <label><input type="radio" name="gender" value="その他">その他</label>
+                        <div class="col-md-10">
+                            <input type="hidden" name="gender" value="">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="gender" id="男性" value="男性" {{ old('gender') == '男性' ? 'checked' : '' }}>男性
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="gender" id="女性" value="女性" {{ old('gender') == '女性' ? 'checked' : '' }}>女性
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="gender" id="その他" value="その他" {{ old('gender') == 'その他' ? 'checked' : '' }}>その他
+                                </div>
                         </div>
                     </div>
                     <div class="form-group row mb-2">
