@@ -7,8 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    use HasFactory;
-
     protected $guarded = array('id');
+
+    public static $rules = array(
+        'name' => 'required',
+        'gender' => 'required',
+        'hobby' => 'required',
+        'introduction' => 'required',
+    );
+
+    public function ProfileHistory()
+    {
+        return $this->hasMany(ProfileHistory::class);
+    }
     
 }
