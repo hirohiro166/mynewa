@@ -29,7 +29,7 @@ class NewsController extends Controller
         $form = $request->all();
 
         //フォームから画像を受け取ったら保存してimage_pathにパスを保存
-        if (isset($form['images'])) {
+        if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
             $news->image_path = basename($path);
         } else {
